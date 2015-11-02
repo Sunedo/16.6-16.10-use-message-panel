@@ -1,0 +1,56 @@
+/*
+U10216010 ZHIWENZHAN
+Rotate with a mouse click the two messages
+"Java is fun" and "Java is powerful" 
+displayed on a panel
+
+use message panel to display
+*/
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import chapter13.MessagePanel;
+
+
+public class Alternate_two_messages_use_messagepanel extends JPanel{
+	// Create a MovableMessagePanel instance for moving a message
+	private MessagePanel panel_java = new MessagePanel();
+	//Two messages to change
+	private String message_fun = "Java is fun";
+	private String message_powerful = "Java is powerful";
+	//default messages
+	private String message = "Java is fun";
+	
+	
+	public  Alternate_two_messages_use_messagepanel() {
+		
+	    //Place the message panel in the frame
+	    add(panel_java);
+	    
+	    addMouseMotionListener(new MouseMotionAdapter() {
+				@Override /** Handle mouse-dragged event */
+				public void mouseDragged(MouseEvent e) {
+					// Transform String while drag
+					if (message == message_fun){
+						message = message_powerful;
+					}
+					else if (message == message_powerful){
+						message = message_fun;
+					}
+					panel_java.setMessage(message);    
+					panel_java.repaint();
+					
+				}
+			});
+	  
+	}
+	
+	public static void main(String[] args) {
+		Alternate_two_messages_re frame = new Alternate_two_messages_re();
+	    frame.setTitle("Alternate_two_messages_use_messagepanel");
+	    frame.setSize(250, 200);
+	    frame.setLocationRelativeTo(null); // Center the frame
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setVisible(true);
+	}
+}
