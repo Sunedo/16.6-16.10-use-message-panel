@@ -1,0 +1,51 @@
+/*
+U10216010 ZHIWENZHAN
+Receive a string from the keyboard and displays it on a panel.
+The enter key signals the end of a string.
+Whenever a new strings is entered, it is displayed on the panel
+
+use message panel to display
+*/
+
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+import chapter13.MessagePanel;
+
+
+public class Enter_and_display_a_string_use_messagepanel extends JPanel{
+	private MessagePanel keyboardPanel = new MessagePanel();
+	private String key_string = ""; // Default String
+
+	/** Initialize UI */
+	public Enter_and_display_a_string_use_messagepanel() {
+		// Add the keyboard panel to accept and display user input
+	    add(keyboardPanel);
+	    
+	    addKeyListener(new KeyAdapter() {
+	        @Override
+	        public void keyPressed(KeyEvent e) {
+	          switch (e.getKeyCode()) {
+	          	case KeyEvent.VK_ENTER: keyboardPanel.setMessage(key_string);
+	          							keyboardPanel.repaint();
+	          							break; //End the string and print
+	            default: key_string = (key_string + e.getKeyChar() ); //add the char to the String 
+	          }
+	        }
+	      });
+
+	    // Set focus
+	    keyboardPanel.setFocusable(true);
+	  }
+
+	  /** Main method */
+	  public static void main(String[] args) {
+		  Enter_and_display_a_string frame = new Enter_and_display_a_string();
+	    frame.setTitle("Enter_and_display_a_string_use_messagepanel");
+	    frame.setSize(300, 300);
+	    frame.setLocationRelativeTo(null); // Center the frame   
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setVisible(true);
+	  }
+}
